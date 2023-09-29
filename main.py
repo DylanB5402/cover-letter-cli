@@ -4,10 +4,10 @@ import pdfkit
 import typer
 
 def generate_cover_letter(company, position):
-    env = Environment(loader = FileSystemLoader(os.getcwd()))
+    env = Environment(loader = FileSystemLoader('/home/dylan/projects/cover-letter-cli'))
     template = env.get_template('cover_letter_template.html')
 
-    with open('out/cover_letter.html', 'w') as fh:
+    with open('/home/dylan/projects/cover-letter-cli/out/cover_letter.html', 'w') as fh:
         fh.write(template.render(
             company = company,
             position = position
@@ -22,7 +22,7 @@ def generate_cover_letter(company, position):
         'encoding': "UTF-8",
     }
 
-    pdfkit.from_file('out/cover_letter.html', f'out/cover_letter_{company}.pdf', options=options)
+    pdfkit.from_file('/home/dylan/projects/cover-letter-cli/out/cover_letter.html', f'/home/dylan/cover_letters/cover_letter_{company}.pdf', options=options)
 
 def main(company: str, position: str):
     generate_cover_letter(company, position)
